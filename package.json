@@ -1,0 +1,14 @@
+{
+  "name": "mansonbot-js",
+  "version": "1.0.0",
+  "description": "A bot created bot The Marilyn Manson Family",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "J-888",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}
