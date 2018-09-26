@@ -1,4 +1,5 @@
 {
 	"prefix": "*",
-	"token": "YOUR API KEY"
+	"token": "YOUR BOT API KEY",
+	"fmAPIkey" : "YOUR LAST.FM API KEY"
 }

@@ -9,6 +9,7 @@
   "author": "J-888",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.4.2"
+    "discord.js": "^11.4.2",
+    "snekfetch": "^4.0.4"
   }
 }

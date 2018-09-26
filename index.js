@@ -1,9 +1,10 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+const { prefix, token, fmAPIkey } = require('./config.json');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+client.config = require("./config.json");
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -69,7 +70,7 @@ client.on('message', message => {
 	}
 
 	try {
-		command.execute(message, args);
+		command.execute(message, args, client);
 	}
 	catch (error) {
 		console.error(error);
