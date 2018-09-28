@@ -8,7 +8,7 @@ module.exports = {
     guildOnly: true,
     args: true,
     usage: '<username> [count]',
-	async execute(message, args, client) {
+	async execute(message, args) {
 
 		const username = args[0];
 		var count = 1;
@@ -18,7 +18,7 @@ module.exports = {
 			count = Math.max(Math.min(count, 5), 1);
 		}
 		
-		const urlGETRecent = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user="+username+"&api_key="+client.config.fmAPIkey+"&format=json";
+		const urlGETRecent = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user="+username+"&api_key="+message.client.config.fmAPIkey+"&format=json";
 		const { body : recent_body } = await snekfetch.get(urlGETRecent);
 		//console.log(recent_body);
 
@@ -33,11 +33,12 @@ module.exports = {
 		const albumImageSize = recent_body.recenttracks.track[0].image.length - 1;
 		const albumImage = recent_body.recenttracks.track[0].image[albumImageSize]["#text"];
 		const nowPlaying = recent_body.recenttracks.track[0].date == undefined;
+
 		if(!nowPlaying){
 			const songDate = new Date(recent_body.recenttracks.track[0].date["#text"]);
 		}
 
-		const urlGETuser = "http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user="+username+"&api_key="+client.config.fmAPIkey+"&format=json";
+		const urlGETuser = "http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user="+username+"&api_key="+message.client.config.fmAPIkey+"&format=json";
 		const { body : user_body } = await snekfetch.get(urlGETuser);
 		//console.log(user_body);
 
@@ -45,26 +46,13 @@ module.exports = {
 		const userImageSize = user_body.user.image.length - 1;
 		const userImage = user_body.user.image[userImageSize]["#text"];
 
-		const urlGETartist = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid="+artistID+"&api_key="+client.config.fmAPIkey+"&format=json";
+		const urlGETartist = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid="+artistID+"&api_key="+message.client.config.fmAPIkey+"&format=json";
 		const { body : artist_body } = await snekfetch.get(urlGETartist);
 		//console.log(artist_body);
 
 		//const artist_url = artist_body.artist.url;
 		const artistImageSize = artist_body.artist.image.length - 1;
-		const artistImage = artist_body.artist.image[artistImageSize]["#text"];
-
-		/*const embed = new Discord.RichEmbed()
-			.setColor('#0099ff')
-			.setTitle(songName)
-			.setURL(user_url)
-			.setAuthor(username, userImage, user_url)
-			.setDescription(artistName)
-			.setThumbnail(artistImage)
-			.addField(songName, artistName, false)
-			.addField(songName, artistName, false)
-			.setImage(albumImage)
-			.setTimestamp()
-			.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');*/	
+		const artistImage = artist_body.artist.image[artistImageSize]["#text"];	
 
 		const embed = new Discord.RichEmbed()
 			.setColor('#0099ff')
@@ -72,13 +60,11 @@ module.exports = {
 			.setURL(user_url)
 			.setAuthor(username, userImage, user_url)
 			.setThumbnail(artistImage)
-			//.addField(songName, artistName, false)
-			//.addField(songName, artistName, false)
 			.setImage(albumImage)
 			.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
 
 		if(nowPlaying)
-			embed.setTimestamp()
+			embed.setTimestamp();
 		else			
 			embed.setTimestamp(songDate)
 

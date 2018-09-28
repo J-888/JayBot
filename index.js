@@ -70,7 +70,7 @@ client.on('message', message => {
 	}
 
 	try {
-		command.execute(message, args, client);
+		command.execute(message, args);
 	}
 	catch (error) {
 		console.error(error);

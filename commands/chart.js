@@ -1,4 +1,3 @@
-const Discord = require('discord.js');
 const snekfetch = require('snekfetch');
 
 module.exports = {
@@ -8,7 +7,7 @@ module.exports = {
     guildOnly: true,
     args: true,
     usage: '<username> [size] [type]`\nSizes: `3(default), 4, 5, 2`\nTypes: `7d(default), 1m, 3m, 6m, 12m, overall',
-	async execute(message, args, client) {
+	async execute(message, args) {
 
 		var size = '3x3';
 		var type = '7day';
