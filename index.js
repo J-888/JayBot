@@ -7,6 +7,16 @@ client.commands = new Discord.Collection();
 client.config = require("./config.json");
 require("./custom_functions.js")(client);
 
+const Enmap = require("enmap");
+client.enmap_fm = new Enmap({
+	name: "enmap_fm",
+	fetchAll: false,
+	autoFetch: true
+});
+
+client.util = require('util');
+client.util.inspect.defaultOptions = { showHidden: false, depth: 2, colors: false, customInspect: true, showProxy: false, maxArrayLength: 100, breakLength: 80, compact: true }
+
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
