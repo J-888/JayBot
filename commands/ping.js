@@ -4,6 +4,6 @@ module.exports = {
 	guildOnly: true,
 	async execute(message, args) {
 		const msg = await message.channel.send("Ping? . . .");
-		msg.edit(`Pong!\nBot Latency is ${msg.createdTimestamp - message.createdTimestamp}ms\nAPI Latency is ${Math.round(message.client.ping)}ms`);
+		msg.edit(`Pong!\`\`\`cs\nBot Latency: ${msg.createdTimestamp - message.createdTimestamp}ms\nAPI Latency: ${Math.round(message.client.ping)}ms\`\`\``);
 	},
 };
