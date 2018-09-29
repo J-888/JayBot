@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.4.2",
+    "moment": "^2.22.2",
+    "moment-duration-format": "^2.2.2",
     "snekfetch": "^4.0.4"
   }
 }
