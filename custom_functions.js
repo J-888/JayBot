@@ -18,9 +18,9 @@ module.exports = (client) => {
 		text = text
 		.replace(/`/g, "`" + String.fromCharCode(8203))
 		.replace(/@/g, "@" + String.fromCharCode(8203))
-		
-		.replace(client.config.token, "");
-		.replace(client.config.fmAPIkey, "");
+
+		.replace(client.config.token, "")
+		.replace(client.config.fmAPIkey, "")
 		.replace(client.config.geniusAPIkey, "");
 
 		return text;
