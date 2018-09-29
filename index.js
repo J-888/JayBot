@@ -5,6 +5,7 @@ const { prefix, token, fmAPIkey } = require('./config.json');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.config = require("./config.json");
+require("./custom_functions.js")(client);
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -27,7 +28,7 @@ client.on('message', message => {
 	const commandName = args.shift().toLowerCase();
 
 	const command = client.commands.get(commandName)
-		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+	|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
 	if (!command) return;
 
@@ -78,4 +79,26 @@ client.on('message', message => {
 	}
 });
 
+/* MESSAGE CLEAN FUNCTION
+  "Clean" removes @everyone pings, as well as tokens, and makes code blocks
+  escaped so they're shown more easily. As a bonus it resolves promises
+  and stringifies objects!
+  This is mostly only used by the Eval and Exec commands.
+*/
+
+/*client.custom = { };
+client.custom.clean = async (client, text) => {
+	if (text && text.constructor.name == "Promise")
+		text = await text;
+	if (typeof evaled !== "string")
+		text = require("util").inspect(text, {depth: 1});
+
+	text = text
+	.replace(/`/g, "`" + String.fromCharCode(8203))
+	.replace(/@/g, "@" + String.fromCharCode(8203))
+	.replace(client.token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
+
+	return text;
+};
+*/
 client.login(token);
