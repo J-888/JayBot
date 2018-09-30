@@ -14,7 +14,10 @@ module.exports = {
 			response = message.client.custom.loadCommand(args[0]);
 			if (response) return message.reply(`Error Loading: ${response}`);
 
-			message.reply(`The command \`${args[0]}\` has been reloaded`);
+			const str = `The command \`${args[0]}\` has been reloaded`;
+			const hline = '─'.repeat(str.length)
+			message.reply(str);
+			console.log(hline + '\n' + str + '\n' + hline);
 		}
 		else{
 			message.channel.send(`You are not the bot owner ${message.author}!`);
