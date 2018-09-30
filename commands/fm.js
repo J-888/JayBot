@@ -40,7 +40,7 @@ module.exports = {
 			message.reply("set your last.fm username first with `*setfm <username>`");
 			return;
 		}
-		else if(isNaN(parseInt(count, 10))){			
+		else if(isNaN(parseInt(count, 10))){
 			message.reply("the count parameter must be a integer");
 			return;
 		}
