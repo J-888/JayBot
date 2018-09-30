@@ -19,9 +19,29 @@ module.exports = (client) => {
 		.replace(/`/g, "`" + String.fromCharCode(8203))
 		.replace(/@/g, "@" + String.fromCharCode(8203))
 
-		.replace(client.config.token, "")
-		.replace(client.config.fmAPIkey, "")
-		.replace(client.config.geniusAPIkey, "");
+		.replace(/client.config.token/g, "")
+		.replace(/client.config.fmAPIkey/g, "")
+		.replace(/client.config.geniusAPIkey/g, "");
+
+		return text;
+	};
+
+	client.custom.cleanABit = async (client, text) => {
+		if (text && text.constructor.name == "Promise")
+			text = await text;
+		/*if (typeof evaled !== "string")
+			text = require("util").inspect(text, {depth: 1});*/
+
+		text = text
+		//.replace(/`/g, "`" + String.fromCharCode(8203))
+		//.replace(/@/g, "@" + String.fromCharCode(8203))
+
+		.replace(/#everyone/g, "# everyone")
+		.replace(/#here/g, "# here")
+
+		.replace(/client.config.token/g, "")
+		.replace(/client.config.fmAPIkey/g, "")
+		.replace(/client.config.geniusAPIkey/g, "");
 
 		return text;
 	};
