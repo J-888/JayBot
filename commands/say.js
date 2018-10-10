@@ -2,6 +2,8 @@ module.exports = {
 	name: 'say',
 	description: 'Says something.',
 	guildOnly: true,
+	args: true,
+	usage: '<message>',
 	async execute(message, args) {
 
 		if(message.mentions.everyone) {			

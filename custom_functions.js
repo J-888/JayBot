@@ -36,8 +36,8 @@ module.exports = (client) => {
 		//.replace(/`/g, "`" + String.fromCharCode(8203))
 		//.replace(/@/g, "@" + String.fromCharCode(8203))
 
-		.replace(/#everyone/g, "# everyone")
-		.replace(/#here/g, "# here")
+		.replace(/@everyone/g, "@ everyone")
+		.replace(/@here/g, "@ here")
 
 		.replace(/client.config.token/g, "")
 		.replace(/client.config.fmAPIkey/g, "")
