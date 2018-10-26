@@ -56,7 +56,7 @@ module.exports = {
 		//console.log(recent_body.recenttracks.track[0]);
 
 
-		if(recent_body.error) {
+		if(recent_body.error || recent_body.recenttracks.track.length < 1) {
 			message.channel.send("User not found");
 			return;
 		}
