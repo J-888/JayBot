@@ -3,7 +3,11 @@ const Discord = require('discord.js');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+
 client.config = require("./config.json");
+client.config.token = process.env.TOKEN;
+client.config.fmAPIkey = process.env.FMAPIKEY;
+
 require("./custom_functions.js")(client);
 
 const Enmap = require("enmap");
