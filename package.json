@@ -17,5 +17,6 @@
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
     "snekfetch": "^4.0.4"
-  }
+  },
+  "engines": { "node": "10.12.0" }
 }
