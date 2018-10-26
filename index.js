@@ -1,6 +1,5 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token, fmAPIkey } = require('./config.json');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -28,13 +27,13 @@ const cooldowns = new Discord.Collection();
 
 client.on('ready', () => {
 	client.user.setActivity('Marilyn Manson', { type: 'LISTENING' });
-	console.log('Ready!');
+	console.log('Bot ready!');
 });
 
 client.on('message', message => {
-	if (message.author.bot || !message.content.startsWith(prefix)) return;
+	if (message.author.bot || !message.content.startsWith(client.config.prefix)) return;
 
-	const args = message.content.slice(prefix.length).split(/ +/);
+	const args = message.content.slice(client.config.prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
 	const command = client.commands.get(commandName)
@@ -50,7 +49,7 @@ client.on('message', message => {
 		let reply = `You didn't provide any arguments, ${message.author}!`;
 
 		if (command.usage) {
-			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+			reply += `\nThe proper usage would be: \`${client.config.prefix}${command.name} ${command.usage}\``;
 		}
 
 		return message.channel.send(reply);
@@ -89,26 +88,4 @@ client.on('message', message => {
 	}
 });
 
-/* MESSAGE CLEAN FUNCTION
-  "Clean" removes @everyone pings, as well as tokens, and makes code blocks
-  escaped so they're shown more easily. As a bonus it resolves promises
-  and stringifies objects!
-  This is mostly only used by the Eval and Exec commands.
-*/
-
-/*client.custom = { };
-client.custom.clean = async (client, text) => {
-	if (text && text.constructor.name == "Promise")
-		text = await text;
-	if (typeof evaled !== "string")
-		text = require("util").inspect(text, {depth: 1});
-
-	text = text
-	.replace(/`/g, "`" + String.fromCharCode(8203))
-	.replace(/@/g, "@" + String.fromCharCode(8203))
-	.replace(client.token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
-
-	return text;
-};
-*/
-client.login(token);
+client.login(client.config.token);
