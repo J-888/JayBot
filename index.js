@@ -48,8 +48,8 @@ DRFtransport.on('rotate', function(oldFilename, newFilename) {
 });
 
 const LogglyTransport = new Loggly({
-    token: "189de478-68cf-4cfc-97a1-9c20e8816d2c",
-    subdomain: "JMTG888",
+    token: process.env.LOGGLYTOKEN,
+    subdomain: process.env.LOGGLYUSER,
     tags: ["Winston-NodeJS"],
     json: true
 });
