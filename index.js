@@ -1,3 +1,6 @@
+if(!process.env.TOKEN){
+	require('dotenv').config();	
+}
 const fs = require('fs');
 const Discord = require('discord.js');
 
@@ -152,4 +155,4 @@ client.on('message', message => {
 	}
 });
 
-//client.login(client.config.token);
+client.login(client.config.token);
