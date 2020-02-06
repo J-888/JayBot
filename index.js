@@ -93,7 +93,7 @@ for (const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 client.on('ready', () => {
-	client.user.setActivity('Marilyn Manson', { type: 'LISTENING' });
+	client.user.setActivity(client.config.activity, { type: 'LISTENING' });
 	console.log('Bot ready!');
 });
 
