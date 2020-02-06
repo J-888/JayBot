@@ -105,7 +105,7 @@ module.exports = {
 			.setURL(songurl)
 			.setAuthor(username, userImage, user_url)
 			.setImage(albumImage)
-			.setFooter('Powered by J-888', 'https://images-ext-1.discordapp.net/external/BRaTbTZhd6TX-ZVfkRzz0tOG74GTr67d2nNvK4HcdOs/https/discordapp.com/api/guilds/326165457126293504/icons/a63ee4eb8a3f6be91f1c0d31a8981958.jpg');
+			.setFooter('Powered by The Manson Family', 'https://images-ext-1.discordapp.net/external/BRaTbTZhd6TX-ZVfkRzz0tOG74GTr67d2nNvK4HcdOs/https/discordapp.com/api/guilds/326165457126293504/icons/a63ee4eb8a3f6be91f1c0d31a8981958.jpg');
 
 		if(artistID)
 			embed.setThumbnail(artistImage);
